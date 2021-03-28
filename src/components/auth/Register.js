@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Auth.css';
+import './auth.css';
 
 export const Register = (props) => {
   const firstName = React.createRef();
@@ -11,6 +11,7 @@ export const Register = (props) => {
   const verifyPassword = React.createRef();
   const passwordDialog = React.createRef();
 
+  // eslint-disable-next-line consistent-return
   const handleRegister = (e) => {
     e.preventDefault();
 

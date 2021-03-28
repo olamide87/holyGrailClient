@@ -1,11 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default class navBar extends Component {
-  render() {
-    return (
-            <div>
-                Hi.
-            </div>
-    );
-  }
-}
+import './navBar.scss';
+
+export const NavBar = (props) => (
+        <ul className="navbar">
+            <li className="navbar__item">
+                Navigation link
+            </li>
+            <li className="navbar__item">
+                HOLY GRAIL
+            </li>
+            {
+                (localStorage.getItem('lu_token') !== null)
+                  ? <li className="nav-item">
+                        <button className="nav-link fakeLink"
+                            onClick={() => {
+                              localStorage.removeItem('lu_token');
+                              props.history.push({ pathname: '/' });
+                            }}
+                        >Logout</button>
+                    </li>
+                  : <li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/login">Login</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/register">Register</Link>
+                        </li>
+                    </li>
+            }        </ul>
+);

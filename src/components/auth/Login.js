@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Auth.css';
+// import './Auth.css';
 
 export const Login = (props) => {
-  const email = React.createRef();
+  const username = React.createRef();
   const password = React.createRef();
   const invalidDialog = React.createRef();
 
@@ -17,7 +17,7 @@ export const Login = (props) => {
         Accept: 'application/json',
       },
       body: JSON.stringify({
-        username: email.current.value,
+        username: username.current.value,
         password: password.current.value,
       }),
     })
@@ -40,11 +40,11 @@ export const Login = (props) => {
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Level Up</h1>
+                    <h1>Holy Grail</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
-                        <input ref={email} type="email" id="email" className="form-control" placeholder="Email address" required autoFocus />
+                        <label htmlFor="inputUsername"> username </label>
+                        <input ref={username} type="username" id="username" className="form-control" placeholder="username" required autoFocus />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputPassword"> Password </label>

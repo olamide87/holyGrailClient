@@ -4,13 +4,12 @@ import { NavBar } from './nav/NavBar';
 import { Login } from './auth/Login';
 import { Register } from './auth/Register';
 
-export const LevelUp = () => (
+export const HolyGrail = () => (
     <>
         <Route render={() => {
           if (localStorage.getItem('lu_token')) {
             return <>
                     <Route render={NavBar} />
-                    <Route render={(props) => <ApplicationViews {...props} />} />
                 </>;
           }
           return <Redirect to="/login" />;

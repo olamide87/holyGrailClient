@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { NavBar } from './nav/NavBar';
 import { Login } from './auth/Login';
 import { Register } from './auth/Register';
+import { ApplicationViews } from './ApplicationViews';
 
 export const HolyGrail = () => (
     <>
@@ -10,6 +11,7 @@ export const HolyGrail = () => (
           if (localStorage.getItem('lu_token')) {
             return <>
                     <Route render={NavBar} />
+                    <Route render={(props) => <ApplicationViews {...props} />} />
                 </>;
           }
           return <Redirect to="/login" />;

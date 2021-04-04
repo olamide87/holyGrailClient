@@ -1,39 +1,34 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import Closet from './closet';
+
+import closetData from '../../data/closetData';
 
 class Closets extends React.Component {
   state = {
     closets: [],
   }
 
-getClosetByUser = () => {
-  const user = localStorage.getProduct('user_id');
-  return fetch(`http://localhost:8800/closet?user=${user}`, {
-    headers: { Authorization: `Token ${localStorage.getProduct('token')}` },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      this.setState({ closets: res.results });
-    });
-}
+  getClosetData = () => {
+    closetData.getAllClosets()
+      .then((res) => this.setState({ closets: res.data }))
+      .catch((err) => console.error(err));
+  }
 
-componentDidMount() {
-  this.getClosetByUser();
-}
+  componentDidMount() {
+    this.getClosetData();
+  }
 
-render() {
-  const { closets } = this.state;
-  const closet = closets.map((closet) => <Closet key={closet.id} closet={closet} getClosetByUser={this.getClosetByUser} />);
-  return (
+  render() {
+    // const { closets } = this.state;
+    // const closet = closets.map((singleCloset) => <Closet key={singleClosets.id} closet={closet} getClosetByUser={this.getClosetByUser} />);
+    return (
       <div className="text-center">
         <h1 className="text-center mt-3 headline">Closet</h1>
         <div className="closet-container">
-          {closet}
+          {/* {closet} */}
         </div>
       </div>
-  );
-}
+    );
+  }
 }
 
-export default withRouter(Closets);
+export default Closets;

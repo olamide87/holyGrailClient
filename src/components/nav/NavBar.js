@@ -1,33 +1,71 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import './navBar.scss';
+import PropTypes from 'prop-types';
 
-export const NavBar = (props) => (
-        <ul className="navbar">
-            <li className="navbar__item">
-                Navigation link
-            </li>
-            <li className="navbar__item">
-                HOLY GRAIL
-            </li>
-            {
-                (localStorage.getItem('lu_token') !== null)
-                  ? <li className="nav-item">
-                        <button className="nav-link fakeLink"
-                            onClick={() => {
-                              localStorage.removeItem('lu_token');
-                              props.history.push({ pathname: '/' });
-                            }}
-                        >Logout</button>
-                    </li>
-                  : <li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/login">Login</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/register">Register</Link>
-                        </li>
-                    </li>
-            }        </ul>
-);
+import { NavLink as RRNavLink } from 'react-router-dom';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+} from 'reactstrap';
+
+import Logout from '../Logout/Logout';
+
+class TheNavbar extends React.Component {
+static propTypes = {
+  authed: PropTypes.bool,
+  authToggle: PropTypes.func,
+}
+
+state = {
+  isOpen: false,
+}
+
+toggle = () => {
+  const { isOpen } = this.state;
+  this.setState({ isOpen: !isOpen });
+}
+
+render() {
+  const { isOpen } = this.state;
+  const { authed, authToggle } = this.props;
+
+  const buildNavbar = () => {
+    if (authed) {
+      return (
+        <Nav className="mr-auto" navbar>
+          <NavItem>
+            <NavLink tag={RRNavLink} to='/home'>Home</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={RRNavLink} to='/closets'>Closets</NavLink>
+          </NavItem>
+          <NavItem>
+            <Logout authToggle={authToggle}/>
+          </NavItem>
+        </Nav>
+      );
+    }
+
+    return (
+            <Nav/>
+    );
+  };
+  return (
+
+    <Navbar color="light" light expand="md">
+      <NavbarBrand href="/">Holy Grail</NavbarBrand>
+        <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={isOpen} navbar>
+            {buildNavbar()}
+          </Collapse>
+    </Navbar>
+  );
+}
+}
+
+export default TheNavbar;

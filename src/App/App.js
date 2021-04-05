@@ -14,6 +14,7 @@ import Auth from '../components/auth/Auth';
 import NewUser from '../components/auth/NewUser';
 import Closets from '../components/closet/closets';
 import LandingPage from '../components/Landingpage/landingpage';
+import home from '../components/Home/home';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false
@@ -36,8 +37,9 @@ const RoutesContainer = ({ authed, authToggle }) => (
       <PublicRoute path='/landingPage' component={LandingPage} authed={authed}/>
       <PublicRoute path='/auth' component={Auth} authed={authed} authToggle={authToggle} />
       <PublicRoute path='/newuser' component={NewUser} authed={authed} authToggle={authToggle} />
+      <PrivateRoute path='/home' component={home} authed={authed} authToggle={authToggle} />
 
-      <Redirect from='*' to='/home' />
+      {/* <Redirect from='*' to='/home' /> */}
     </Switch>
   </div>
 );
@@ -48,9 +50,24 @@ class App extends React.Component {
     userData: null,
   };
 
-  componentDidMount() {
+  callSetState = () => {
     if (localStorage.getItem('authed') === 'true') {
       this.setState({ authed: true });
+    }
+  }
+
+  constructor() {
+    super();
+    if (localStorage.getItem('authed') === 'true') {
+      this.state = {
+        authed: true,
+        userData: null,
+      };
+    } else {
+      this.state = {
+        authed: false,
+        userData: null,
+      };
     }
   }
 

@@ -34,8 +34,6 @@ class Auth extends React.Component {
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('user_id', res.data.user_id);
           localStorage.setItem('isStaff', res.data.is_staff);
-
-          this.props.authToggle();
         }
       })
       .catch((err) => console.error(err));

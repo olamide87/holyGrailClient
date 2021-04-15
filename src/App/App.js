@@ -12,7 +12,7 @@ import './App.scss';
 import Navbar from '../components/nav/NavBar';
 import Auth from '../components/auth/Auth';
 import NewUser from '../components/auth/NewUser';
-import Closets from '../components/closet/closets';
+import Closets from '../components/closet/closets.jsx';
 import LandingPage from '../components/Landingpage/landingpage';
 import home from '../components/Home/home';
 

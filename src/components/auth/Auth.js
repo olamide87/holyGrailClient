@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { withRouter } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -21,7 +21,7 @@ class Auth extends React.Component {
     password: '',
   }
 
-  verifyEmail = (e) => {
+  verifyEmail = (router) => (e) => {
     e.preventDefault();
     const { username, password } = this.state;
     let user = { username, password };
@@ -34,6 +34,7 @@ class Auth extends React.Component {
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('user_id', res.data.user_id);
           localStorage.setItem('isStaff', res.data.is_staff);
+          router.push('/');
         }
       })
       .catch((err) => console.error(err));
@@ -49,7 +50,7 @@ class Auth extends React.Component {
     this.setState({ username: e.target.value });
   }
 
-  render() {
+  render({ router }) {
     return (
 
       <Container component="main" maxWidth="xs">
@@ -91,7 +92,7 @@ class Auth extends React.Component {
               fullWidth
               variant="contained"
               color="primary"
-              onClick={this.verifyEmail}
+              onClick={this.verifyEmail(router)}
             >
               Sign In
             </Button>
@@ -109,4 +110,4 @@ class Auth extends React.Component {
   }
 }
 
-export default Auth;
+export default withRouter(Auth);

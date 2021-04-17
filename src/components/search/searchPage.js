@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import SearchBar from './searchBar';
 import ProductList from './productList';
 import productData from '../../data/productData';
 
@@ -16,7 +15,7 @@ const SearchPage = (props) => {
         setProductList(data);
         setProductListDefault(data);
       });
-};
+  };
 
   return (
       <>

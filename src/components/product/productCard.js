@@ -7,7 +7,9 @@ class ProductCard extends React.Component {
   }
 
   getProductData = () => {
-    productData.getProductByClosetId()
+    const { closetId } = this.state;
+    console.log(this.state);
+    productData.getProductByClosetId(closetId)
       .then((res) => this.setState({ product: res.data }))
       .catch((err) => console.error(err));
   }
@@ -18,7 +20,6 @@ class ProductCard extends React.Component {
 
   render() {
     const { product } = this.state;
-    console.log(product);
     const products = product.map((singleProduct) => <div className="Product card">
         <div className="card-body">
           <h5 className="card-title">{singleProduct.product_name}</h5>

@@ -8,6 +8,9 @@ const ProductList = ({ productList = [] }) => (
         return (
             <div key={data.name}>
               <h1>{data.name}</h1>
+              <h1>{data.color}</h1>
+              <h1>{data.price}</h1>
+
     </div>
         );
       }

@@ -6,8 +6,19 @@ class ProductCard extends React.Component {
     product: [],
   }
 
+  getProductData = () => {
+    productData.getProductByClosetId()
+      .then((res) => this.setState({ product: res.data }))
+      .catch((err) => console.error(err));
+  }
+
+  componentDidMount() {
+    this.getProductData();
+  }
+
   render() {
     const { product } = this.state;
+    console.log(product);
     const products = product.map((singleProduct) => <div className="Product card">
         <div className="card-body">
           <h5 className="card-title">{singleProduct.product_name}</h5>

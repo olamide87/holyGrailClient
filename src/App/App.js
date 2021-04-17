@@ -12,9 +12,10 @@ import './App.scss';
 import Navbar from '../components/nav/NavBar';
 import Auth from '../components/auth/Auth';
 import NewUser from '../components/auth/NewUser';
-import Closets from '../components/closet/closets';
+import Closets from '../components/closet/closets.jsx';
 import LandingPage from '../components/Landingpage/landingpage';
 import home from '../components/Home/home';
+import productCard from '../components/product/productCard';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false
@@ -38,8 +39,9 @@ const RoutesContainer = ({ authed, authToggle }) => (
       <PublicRoute path='/auth' component={Auth} authed={authed} authToggle={authToggle} />
       <PublicRoute path='/newuser' component={NewUser} authed={authed} authToggle={authToggle} />
       <PrivateRoute path='/home' component={home} authed={authed} authToggle={authToggle} />
+      <PrivateRoute path='/productCard' component={productCard} authed={authed} authToggle={authToggle} />
 
-      {/* <Redirect from='*' to='/home' /> */}
+      {/* { <Redirect from='*' to='/home' />} */}
     </Switch>
   </div>
 );

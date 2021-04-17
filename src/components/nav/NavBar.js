@@ -35,7 +35,6 @@ render() {
   const { authed, authToggle } = this.props;
 
   const buildNavbar = () => {
-    console.log(authed);
     if (authed) {
       return (
         <Nav className="mr-auto" navbar>

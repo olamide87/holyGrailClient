@@ -159,6 +159,18 @@ class NewUser extends React.Component {
                 onChange={this.usernameChange}
               />
             </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="password"
+                label="password"
+                name="password"
+                autoComplete="password"
+                onChange={this.passwordChange}
+              />
+            </Grid>
             <Grid item xs={12}>
             </Grid>
           </Grid>

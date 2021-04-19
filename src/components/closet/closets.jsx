@@ -1,9 +1,3 @@
-// I want to print closet cards for all three categories
-// on the card it should show the name of the closet, image, and button to view whats inside
-// I will need to import product into the closet component
-// i will need to pass the props for product in the closet component
-// I need to write a function that upon clicking the view detail button it will grab all the products
-// Based on closet id and display them as product view
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 

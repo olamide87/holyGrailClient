@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router';
-import ProductList from './productList';
+// import ProductList from './productList';
 import productData from '../../data/productData';
 import NewProduct from '../product/newProduct';
 
@@ -45,7 +45,7 @@ class SearchPage extends React.Component {
           <div className="search-results">
             {productCards}
           </div>
-        <ProductList productList={ProductList}/>
+        {/* <ProductList productList={ProductList}/> */}
         </div>
     );
   }

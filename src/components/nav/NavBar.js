@@ -45,7 +45,7 @@ render() {
             <NavLink tag={RRNavLink} to='/closets'>Closets</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={RRNavLink} to='/searchPage'>Search</NavLink>
+            {/* <NavLink tag={RRNavLink} to='/searchPage'>Search</NavLink> */}
           </NavItem>
           <NavItem>
             <Logout authToggle={authToggle}/>

@@ -20,6 +20,14 @@ class Closets extends React.Component {
       .catch((err) => console.error(err));
   }
 
+  deleteProduct = (productId) => {
+    closetData.deleteProduct(productId)
+      .then(() => {
+        this.getProductData();
+      })
+      .catch((err) => console.error('Delete product failed', err));
+  }
+
   getClosetData = () => {
     closetData.getClosetByUid('1')
       .then((res) => this.setState({ closets: res.data }))

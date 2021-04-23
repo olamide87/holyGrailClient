@@ -24,7 +24,10 @@ const headers = () => (
 
 const getProductByClosetId = (closetId) => axios.get(`${url}/product?type=${closetId}`, headers());
 
+const deleteProduct = (productId) => axios.delete(`${url}/product?type=${productId}`, headers());
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getProductByClosetId,
+  deleteProduct,
 };

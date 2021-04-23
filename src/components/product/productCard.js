@@ -9,7 +9,6 @@ class ProductCard extends React.Component {
 
   getProductData = () => {
     const { closetId } = this.state;
-    console.log(this.state);
     productData.getProductByClosetId(closetId)
       .then((res) => this.setState({ product: res.data }))
       .catch((err) => console.error(err));

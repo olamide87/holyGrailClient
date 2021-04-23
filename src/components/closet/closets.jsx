@@ -1,10 +1,12 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 import { withRouter } from 'react-router-dom';
 
 import closetData from '../../data/closetData';
 import productData from '../../data/productData';
 
-import productForm from '../product/productForm';
+import ProductForm from '../product/productForm';
+// import product from '../product/product';
 
 class Closets extends React.Component {
   state = {
@@ -23,6 +25,12 @@ class Closets extends React.Component {
       .catch((err) => console.error(err));
   }
 
+  deleteProductEvent = (e) => {
+    e.preventDefault();
+    const { product, deleteProduct } = this.props;
+    deleteProduct(product.id);
+  }
+
   createProduct = (newProduct) => {
     productData.createProduct(newProduct)
       .then(() => {
@@ -30,12 +38,7 @@ class Closets extends React.Component {
         this.setState({ showForm: false });
       })
       .catch((err) => console.error(err));
-  }
-
-  deleteProductEvent = (e) => {
-    e.preventDefault();
-    const { product, deleteProduct } = this.props;
-    deleteProduct(product.id);
+    // toast.success(`${product.product_name} has been added to your closet!.`, { position: toast.POSITION.TOP_CENTER });
   }
 
   deleteProduct = (productId) => {
@@ -58,11 +61,13 @@ class Closets extends React.Component {
 
   render() {
     const { closets, product, showForm } = this.state;
+    const { closetId } = this.props;
     const products = product.map((singleProduct) => <div className="card-body">
       <h5 className="card-title">{singleProduct.product_name}</h5>
       <img className="car-img" src={singleProduct.image} alt={singleProduct.product_name} />
-      <p className="card-text">{singleProduct.price}</p>
-      <p className="card-text">{singleProduct.color}</p>
+      <p className="card-text">Price:{singleProduct.price}</p>
+      <p className="card-text">Color:{singleProduct.color}</p>
+      <button className="btn btn-warning" onClick={this.editProductEvent}><i className="fas fa-edit"></i></button>
       <button className="btn btn-danger" onClick={this.deleteProductEvent}><i class="fas fa-trash-alt"></i></button>
     </div>);
     const renderedClosets = closets.map((closet) => <div className="card-body">
@@ -78,6 +83,7 @@ class Closets extends React.Component {
       {renderedClosets.length ? renderedClosets : 'No closets to show'}
       <br />
       <button className="btn btn-warning" onClick={() => { this.setState({ showForm: !showForm }); }}><i className={showForm ? 'far fa-times-circle' : 'far fa-plus-square'}></i></button><br />
+      {showForm ? <ProductForm closetId={closetId} createProduct={this.createProduct} /> : ''}
       <div className="product-cards">{products.length ? products : 'No Products to Show'}</div>
     </>;
   }

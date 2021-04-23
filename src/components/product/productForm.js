@@ -55,6 +55,9 @@ class ProductForm extends React.Component {
     }
 
     render() {
+      const {
+        productName, image, color, price, owned,
+      } = this.state;
       return (
         <form className="col-6 offset-3">
           <div className="form-group">
@@ -64,6 +67,7 @@ class ProductForm extends React.Component {
               className="form-control"
               id="productName"
               placeholder="Enter Product name"
+              value={productName}
               onChange={this.changeProductNameEvent}
             />
           </div>
@@ -74,6 +78,7 @@ class ProductForm extends React.Component {
               className="form-control"
               id="Image"
               placeholder="Image"
+              value={image}
               onChange={this.changeImageEvent}
             />
           </div>
@@ -84,26 +89,29 @@ class ProductForm extends React.Component {
               className="form-control"
               id="Color"
               placeholder="Enter Color"
+              value={color}
               onChange={this.changeColorEvent}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="Price">Color</label>
+            <label htmlFor="Price">Price</label>
             <input
               type="text"
               className="form-control"
-              id="Color"
+              id="price"
               placeholder="Enter Price"
+              value={price}
               onChange={this.changePriceEvent}
             />
           </div>
           <div className="form-group">
             <label htmlFor="changeIsOwnedEvent">Do you own this product?</label>
             <input
-              type="boolean"
+              type="checkbox"
               className="form-control"
               id="changeIsOwnedEvent"
               placeholder="Do you own"
+              value={owned}
               onChange={this.changeIsOwnedEvent}
             />
           </div>

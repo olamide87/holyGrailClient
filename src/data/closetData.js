@@ -10,10 +10,7 @@ const headers = () => ({
 
 const getClosetByUid = (uid) => axios.get(`${url}/closet/${uid}`, headers());
 
-const addProduct = (newProduct) => axios.post(`${url}/closet${newProduct}`, headers());
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getClosetByUid,
-  addProduct,
 };

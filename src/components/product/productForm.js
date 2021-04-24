@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
@@ -8,6 +9,7 @@ class ProductForm extends React.Component {
       image: '',
       price: '',
       owns: '',
+      closet_id: '',
     }
 
     changeProductNameEvent = (e) => {
@@ -32,22 +34,28 @@ class ProductForm extends React.Component {
 
     changeIsOwnedEvent = (e) => {
       e.preventDefault();
-      this.setState({ owned: e.target.value });
+      this.setState({ owns: e.target.checked });
+    }
+
+    changeClosetEvent = (e) => {
+      console.log(e.target);
+      e.preventDefault();
+      this.setState({ closet_id: e.target.value });
     }
 
     saveProductEvent = (e) => {
       e.preventDefault();
       const {
-        productName, image, color, price, owned,
+        product_name, image, color, price, owns, closet_id,
       } = this.state;
-      const { createProduct, closetId } = this.props;
+      const { createProduct } = this.props;
 
       const newProduct = {
-        productName,
+        product_name,
         image,
-        closetId,
+        closet_id,
         color,
-        owned,
+        owns,
         price,
       };
 
@@ -56,7 +64,7 @@ class ProductForm extends React.Component {
 
     render() {
       const {
-        productName, image, color, price, owned,
+        productName, image, color, price, owns, closet_id,
       } = this.state;
       return (
         <form className="col-6 offset-3">
@@ -111,12 +119,27 @@ class ProductForm extends React.Component {
               className="form-control"
               id="changeIsOwnedEvent"
               placeholder="Do you own"
-              value={owned}
+              value={owns}
               onChange={this.changeIsOwnedEvent}
             />
           </div>
+          <div className="form-group">
+            <label htmlFor="Closet">Closet</label>
+            <select
+              type="text"
+              className="form-control"
+              id="closet"
+              placeholder="Enter Closet"
+              value={closet_id}
+              onChange={this.changeClosetEvent}>
+                <option value="0">Select Closet</option>
+                <option value="1">Shoes</option>
+                <option value="2">Clothes</option>
+                <option value="3">Accessories</option>
+              </select>
+          </div>
 
-          <button className="btn btn-dark" onClick={this.saveItemEvent}>Save Product</button>
+          <button className="btn btn-dark" onClick={this.saveProductEvent}>Save Product</button>
         </form>
       );
     }

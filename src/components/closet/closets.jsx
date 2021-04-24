@@ -27,7 +27,7 @@ class Closets extends React.Component {
 
   deleteProductEvent = (e) => {
     e.preventDefault();
-    const { product, deleteProduct } = this.props;
+    const { product, deleteProduct } = this.state;
     deleteProduct(product.id);
   }
 
@@ -68,7 +68,7 @@ class Closets extends React.Component {
       <p className="card-text">Price:{singleProduct.price}</p>
       <p className="card-text">Color:{singleProduct.color}</p>
       <button className="btn btn-warning" onClick={this.editProductEvent}><i className="fas fa-edit"></i></button>
-      <button className="btn btn-danger" onClick={this.deleteProductEvent}><i class="fas fa-trash-alt"></i></button>
+      <button className="btn btn-danger" onClick={this.deleteProductEvent}><i className="fas fa-trash-alt"></i></button>
     </div>);
     const renderedClosets = closets.map((closet) => <div className="card-body">
       <h5 className="card-title">{closet.title}</h5>

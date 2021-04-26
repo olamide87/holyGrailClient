@@ -28,9 +28,12 @@ const deleteProduct = (productId) => axios.delete(`${url}/product/${productId}`,
 
 const createProduct = (newProduct) => axios.post(`${url}/product`, newProduct, createHeaders);
 
+const updateProduct = (productId, updatedProduct) => axios.put(`${url}/product/${productId}`, updatedProduct);
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getProductByClosetId,
   createProduct,
   deleteProduct,
+  updateProduct,
 };

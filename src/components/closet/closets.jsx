@@ -1,11 +1,11 @@
 import React from 'react';
-import { toast } from 'react-toastify';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import closetData from '../../data/closetData';
 import productData from '../../data/productData';
 
 import ProductForm from '../product/productForm';
+import EditProductForm from '../product/editProductForm';
 // import product from '../product/product';
 
 class Closets extends React.Component {
@@ -39,6 +39,18 @@ class Closets extends React.Component {
     // toast.success(`${product.product_name} has been added to your closet!.`, { position: toast.POSITION.TOP_CENTER });
   }
 
+  updateProduct = (e) => {
+    e.preventDefault();
+    const { productId } = this.props.match.params;
+    console.log(productId);
+    productData
+      .updateProduct(productId, this.state.product)
+      .then(() => {
+        this.props.history.push(`/product/${productId}`);
+      })
+      .catch((err) => console.error('edit product broke', err));
+  };
+
   deleteProduct = (productId) => {
     console.log(productId);
     productData.deleteProduct(productId)
@@ -61,6 +73,7 @@ class Closets extends React.Component {
   }
 
   render() {
+    const editLink = `/edit/${product.id}`;
     const { closets, product, showForm } = this.state;
     const { closetId } = this.props;
     const products = product.map((singleProduct) => <div className="card-body">
@@ -68,7 +81,11 @@ class Closets extends React.Component {
       <img className="car-img" src={singleProduct.image} alt={singleProduct.product_name} />
       <p className="card-text">Price:{singleProduct.price}</p>
       <p className="card-text">Color:{singleProduct.color}</p>
-      <button className="btn btn-warning" onClick={this.editProductEvent}><i className="fas fa-edit"></i></button>
+      {/* {
+          singleProduct.owns
+            && <input id={singleProduct.id} onChange={isChecked} type="checkbox" aria-label="Checkbox for following text input" checked />
+        } */}
+      <Link to={editLink} className="btn btn-success"><i className="fas fa-pencil-alt"></i></Link>
       <button className="btn btn-danger" onClick={() => { this.deleteProductEvent(singleProduct.id); }}><i className="fas fa-trash-alt"></i></button>
     </div>);
     const renderedClosets = closets.map((closet) => <div className="card-body">

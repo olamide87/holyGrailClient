@@ -9,7 +9,6 @@ import {
 
 import './App.scss';
 
-import { Search } from '@material-ui/icons';
 import Navbar from '../components/nav/NavBar';
 import Auth from '../components/auth/Auth';
 import NewUser from '../components/auth/NewUser';
@@ -17,6 +16,7 @@ import Closets from '../components/closet/closets.jsx';
 import LandingPage from '../components/Landingpage/landingpage';
 import home from '../components/Home/home';
 import productCard from '../components/product/productCard';
+import EditProductForm from '../components/product/editProductForm';
 
 const PublicRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === false
@@ -41,7 +41,7 @@ const RoutesContainer = ({ authed, authToggle }) => (
       <PublicRoute path='/newuser' component={NewUser} authed={authed} authToggle={authToggle} />
       <PrivateRoute path='/home' component={home} authed={authed} authToggle={authToggle} />
       <PrivateRoute path='/productCard' component={productCard} authed={authed} authToggle={authToggle} />
-      {/* <PrivateRoute path='/searchPage' component={SearchPage} authed={authed} authToggle={authToggle}/> */}
+      <PrivateRoute path='/EditProductForm' component={EditProductForm} authed={authed} authToggle={authToggle}/>
 
       {/* { <Redirect from='*' to='/home' />} */}
     </Switch>
